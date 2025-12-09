@@ -19,22 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
     $captcha_success = json_decode($verify);
 
     // --- DEBUG START ---
-    echo "<pre>";
-    echo "<strong>Raw Response from Google:</strong><br>";
-    var_dump($captcha_success);
-    echo "</pre>";
-    echo "Token received: " . substr($_POST['recaptcha_response'], 0, 20) . "...<br>";
-    die("Script stopped for debugging.");
+//     echo "<pre>";
+//     echo "<strong>Raw Response from Google:</strong><br>";
+//     var_dump($captcha_success);
+//     echo "</pre>";
+//     echo "Token received: " . substr($_POST['recaptcha_response'], 0, 20) . "...<br>";
+//     die("Script stopped for debugging.");
     // --- DEBUG END ---
 
     // 4. Check results
     // reCAPTCHA v3 returns a 'score' (0.0 to 1.0).
     // 0.5 is a common threshold. < 0.5 is likely a bot.
-//     if ($captcha_success->success == false || $captcha_success->score < 0.5) {
-//         // Redirect back with an error if it fails
-//         header("Location: index.html?status=error&message=captcha_error");
-//         exit();
-//     }
+    if ($captcha_success->success == false || $captcha_success->score < 0.5) {
+        // Redirect back with an error if it fails
+        header("Location: index.html?status=error&message=captcha_error");
+        exit();
+    }
 
     // If we pass here, the user is human. Continue with your email code below...
 
