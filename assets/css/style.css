@@ -1,0 +1,30 @@
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #FFFFFF;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(231, 247, 254, 1) 100%);
+    background-repeat: no-repeat;
+}
+
+.logo {
+    width: 300px;
+}
+
+.splash {
+    width: 600px;
+}
+h1 {
+    /*letter-spacing: -0.05em;*/
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #079CE0;
+}
+.the-button {
+    background-color: #FF031A !important;
+    border-color: #e60116 !important;
+    font-size: 1.85rem;
+    font-weight: 700;
+}
+.the-button:hover {
+    background-color: #e60116 !important;
+}
