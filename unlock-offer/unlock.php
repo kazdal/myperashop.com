@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
     echo "<strong>Raw Response from Google:</strong><br>";
     var_dump($captcha_success);
     echo "</pre>";
+    echo "Token received: " . substr($_POST['recaptcha_response'], 0, 20) . "...<br>";
     die("Script stopped for debugging.");
     // --- DEBUG END ---
 
