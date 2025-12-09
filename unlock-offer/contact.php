@@ -67,13 +67,12 @@ $smtpSecure   = 'tls'; // or PHPMailer::ENCRYPTION_SMTPS
 
 // ---- COLLECT FIELDS ----
 // adjust these to match your actual form field names
-$email     = trim($_POST['email'] ?? '');
-$phone     = trim($_POST['phone'] ?? '');
+$message = trim($_POST['message'] ?? '');
 
 // reCAPTCHA token
 $token = $_POST['g-recaptcha-response'] ?? '';
 
-if (!$email) {
+if (!$message) {
     echo json_encode(['success' => false, 'message' => 'Please fill in all required fields.']);
     exit;
 }
