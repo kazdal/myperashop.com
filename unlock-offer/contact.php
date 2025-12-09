@@ -109,7 +109,7 @@ try {
     $mail->addAddress($recipient);
 
     // Let client reply directly to user
-    $mail->addReplyTo($email, "{$email}");
+//     $mail->addReplyTo($email, "{$email}");
 
     // Content
     $mail->Subject = $subject;
