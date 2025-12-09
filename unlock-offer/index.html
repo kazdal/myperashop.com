@@ -75,7 +75,7 @@
     });
 </script>
 <script>
-    document.getElementById('myForm').addEventListener('submit', function(e) {
+    document.getElementById('rewardForm').addEventListener('submit', function(e) {
         e.preventDefault();
         grecaptcha.ready(function() {
             grecaptcha.execute('6LfgVSYsAAAAAJZrBe2g1Co-b_ijoJN1fZZWy43y', {action: 'submit'}).then(function(token) {
