@@ -66,7 +66,7 @@ $email     = trim($_POST['email'] ?? '');
 $phone     = trim($_POST['phone'] ?? '');
 
 // ---- CONFIG ----
-$recipient       = "kazdal@gmail.com";              // where the email should be sent
+$recipient       = "support@myperashop.com";              // where the email should be sent
 $subject         = "New Form Submission: {$email}";
 $recaptchaSecret = "6LfgVSYsAAAAANbGJiKPA-O15G58dOpiXvISQZQy";   // from Google reCAPTCHA
 
