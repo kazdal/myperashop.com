@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
     // 0.5 is a common threshold. < 0.5 is likely a bot.
     if ($captcha_success->success == false || $captcha_success->score < 0.5) {
         // Redirect back with an error if it fails
-        header("Location: index.html?status=error");
+        header("Location: index.html?status=error&message=captcha_error");
         exit();
     }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
 
 } else {
     // If no token exists, block the request
-    header("Location: index.html?status=error");
+    header("Location: index.html?status=error&message=captcha_error_token");
     exit();
 }
 
@@ -119,6 +119,6 @@ try {
         'success' => false,
         'message' => 'Mailer Error: ' . $mail->ErrorInfo,
     ]);
-    header("Location: index.html?status=error");
+    header("Location: index.html?status=error&message=mailer_error");
     exit;
 }
