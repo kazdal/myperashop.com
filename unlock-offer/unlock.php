@@ -11,21 +11,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
 
     // 2. Build the verification request
     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-    $recaptcha_secret = '6LfgVSYsAAAAANbGJiKPA-O15G58dOpiXvISQZQy'; // <--- PUT YOUR PRIVATE SECRET KEY HERE
+    $recaptcha_secret = '6LfgVSYsAAAAANbGJiKPA-O15G58dOpiXvISQZQy';
     $recaptcha_response = $_POST['recaptcha_response'];
 
     // 3. Send request to Google
     $verify = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
     $captcha_success = json_decode($verify);
 
+    // --- DEBUG START ---
+    echo "<pre>";
+    echo "<strong>Raw Response from Google:</strong><br>";
+    var_dump($captcha_success);
+    echo "</pre>";
+    die("Script stopped for debugging.");
+    // --- DEBUG END ---
+
     // 4. Check results
     // reCAPTCHA v3 returns a 'score' (0.0 to 1.0).
     // 0.5 is a common threshold. < 0.5 is likely a bot.
-    if ($captcha_success->success == false || $captcha_success->score < 0.5) {
-        // Redirect back with an error if it fails
-        header("Location: index.html?status=error&message=captcha_error");
-        exit();
-    }
+//     if ($captcha_success->success == false || $captcha_success->score < 0.5) {
+//         // Redirect back with an error if it fails
+//         header("Location: index.html?status=error&message=captcha_error");
+//         exit();
+//     }
 
     // If we pass here, the user is human. Continue with your email code below...
 
