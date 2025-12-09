@@ -53,11 +53,6 @@ require __DIR__ . '/phpmailer/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// ---- CONFIG ----
-$recipient       = "kazdal@gmail.com";              // where the email should be sent
-$subject         = "New Support Form Submission";
-$recaptchaSecret = "6LfgVSYsAAAAANbGJiKPA-O15G58dOpiXvISQZQy";   // from Google reCAPTCHA
-
 // SMTP config (from your client)
 $smtpHost     = "email-smtp.us-east-1.amazonaws.com";
 $smtpUsername = "AKIAQWX6AMAFJPBDE4YH";
@@ -67,7 +62,13 @@ $smtpSecure   = 'tls'; // or PHPMailer::ENCRYPTION_SMTPS
 
 // ---- COLLECT FIELDS ----
 // adjust these to match your actual form field names
+$email     = trim($_POST['email'] ?? '');
 $message = trim($_POST['message'] ?? '');
+
+// ---- CONFIG ----
+$recipient       = "kazdal@gmail.com";              // where the email should be sent
+$subject         = "New Support Form Submission: {$email}";
+$recaptchaSecret = "6LfgVSYsAAAAANbGJiKPA-O15G58dOpiXvISQZQy";   // from Google reCAPTCHA
 
 // reCAPTCHA token
 $token = $_POST['g-recaptcha-response'] ?? '';
@@ -82,6 +83,8 @@ $bodyLines = [];
 $bodyLines[] = "New Support form submission:";
 $bodyLines[] = "<br>";
 $bodyLines[] = "Message Content";
+$bodyLines[] = "<br>";
+$bodyLines[] = "Email: {$email}<br>";
 $bodyLines[] = "<br>";
 $bodyLines[] = "Message: {$message}<br>";
 $body = implode("\n", $bodyLines);
@@ -109,7 +112,7 @@ try {
     $mail->addAddress($recipient);
 
     // Let client reply directly to user
-//     $mail->addReplyTo($email, "{$email}");
+    $mail->addReplyTo($email, "{$email}");
 
     // Content
     $mail->Subject = $subject;

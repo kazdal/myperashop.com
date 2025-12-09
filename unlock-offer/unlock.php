@@ -53,11 +53,6 @@ require __DIR__ . '/phpmailer/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// ---- CONFIG ----
-$recipient       = "kazdal@gmail.com";              // where the email should be sent
-$subject         = "New Form Submission";
-$recaptchaSecret = "6LfgVSYsAAAAANbGJiKPA-O15G58dOpiXvISQZQy";   // from Google reCAPTCHA
-
 // SMTP config (from your client)
 $smtpHost     = "email-smtp.us-east-1.amazonaws.com";
 $smtpUsername = "AKIAQWX6AMAFJPBDE4YH";
@@ -69,6 +64,11 @@ $smtpSecure   = 'tls'; // or PHPMailer::ENCRYPTION_SMTPS
 // adjust these to match your actual form field names
 $email     = trim($_POST['email'] ?? '');
 $phone     = trim($_POST['phone'] ?? '');
+
+// ---- CONFIG ----
+$recipient       = "kazdal@gmail.com";              // where the email should be sent
+$subject         = "New Form Submission: {$email}";
+$recaptchaSecret = "6LfgVSYsAAAAANbGJiKPA-O15G58dOpiXvISQZQy";   // from Google reCAPTCHA
 
 // reCAPTCHA token
 $token = $_POST['g-recaptcha-response'] ?? '';
