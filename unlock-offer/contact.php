@@ -126,6 +126,6 @@ try {
         'success' => false,
         'message' => 'Mailer Error: ' . $mail->ErrorInfo,
     ]);
-//     header("Location: confirmation.html?status=error&message=mailer_error");
+    header("Location: confirmation.html?status=error&message=mailer_error");
     exit;
 }
