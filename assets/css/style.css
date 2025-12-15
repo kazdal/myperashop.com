@@ -28,3 +28,9 @@ h1 {
 .the-button:hover {
     background-color: #e60116 !important;
 }
+
+@media (max-width: 768px) {
+    .logo {
+        width: 150px;
+    }
+}
