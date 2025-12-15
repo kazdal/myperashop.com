@@ -25,6 +25,12 @@
         </div>
         <div class="col-12">
             <form class="row" id="rewardForm" action="unlock.php" method="post">
+                
+                <div style="display:none; opacity:0; visibility:hidden;">
+                    <label>City Name:</label>
+                    <input type="text" name="hp_check" value="" tabindex="-1" autocomplete="off">
+                </div>
+                
                 <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
                 <div class="col-12 col-lg-8 offset-lg-2">
                     <div id="message-container" class="alert alert-danger d-none">
