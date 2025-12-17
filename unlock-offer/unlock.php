@@ -43,11 +43,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // SMTP config
-$smtpHost     = "email-smtp.us-east-1.amazonaws.com";
-$smtpUsername = "AKIAQWX6AMAFJPBDE4YH";
-$smtpPassword = "BKa7DMRM+ClOHg5ZI4jkg/O0vKMXeiYQMISZISemugDj";
-$smtpPort     = 587;
-$smtpSecure   = 'tls';
+$smtpHost     = getenv('SES_SMTP_HOST');
+$smtpUsername = getenv('SES_SMTP_USERNAME');
+$smtpPassword = getenv('SES_SMTP_PASSWORD');
+$smtpPort     = (int)(getenv('SES_SMTP_PORT') ?: 587);
+$smtpSecure   = getenv('SES_SMTP_SECURE') ?: 'tls';
 
 // ---- COLLECT & SANITIZE FIELDS ----
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
