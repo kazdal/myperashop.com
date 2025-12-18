@@ -133,14 +133,22 @@ try {
     } catch (Exception $e) {
         // ERROR: Redirect with error message
         // Note: We do NOT send the raw $mail->ErrorInfo to the URL for security reasons
-        header("Location: index.html?status=error&message=Email+Server+Error");
+//         header("Location: index.html?status=error&message=Email+Server+Error");
+        echo json_encode([
+                'success' => false,
+                'message' => 'Mailer Error 1: ' . $mail->ErrorInfo,
+            ]);
         exit();
     }
 
 } catch (Exception $e) {
     // ERROR: Redirect with error message
     // Note: We do NOT send the raw $mail->ErrorInfo to the URL for security reasons
-    header("Location: index.html?status=error&message=Email+Server+Error");
+//     header("Location: index.html?status=error&message=Email+Server+Error");
+    echo json_encode([
+            'success' => false,
+            'message' => 'Mailer Error 2: ' . $mail->ErrorInfo,
+        ]);
     exit();
 }
 ?>
